@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WebsiteCurators253 | Build. Curate. Optimize.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #1a2e4a;
+    --teal: #2abfb0;
+    --teal-dark: #1a9e91;
+    --orange: #f47b20;
+    --orange-light: #ff9a45;
+    --white: #ffffff;
+    --off-white: #f7f8fa;
+    --light-gray: #eef0f4;
+    --mid-gray: #9aa3b0;
+    --text: #1a2e4a;
+    --text-muted: #5a6578;
+    --radius: 12px;
+    --radius-lg: 20px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 { font-family: 'Syne', sans-serif; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 4rem;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(26,46,74,0.08);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 24px rgba(26,46,74,0.08); }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem;
+    color: var(--navy); text-decoration: none;
+  }
+  .nav-logo span { color: var(--orange); }
+
+  .logo-mark {
+    width: 38px; height: 38px;
+    position: relative; flex-shrink: 0;
+  }
+
+  .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.9rem; font-weight: 500; color: var(--text-muted);
+    text-decoration: none; letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--navy); }
+
+  .nav-cta {
+    background: var(--orange); color: white !important;
+    padding: 0.55rem 1.4rem; border-radius: 50px;
+    font-weight: 600 !important; color: white !important;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+  .nav-cta:hover { background: var(--orange-light) !important; transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 4rem 5rem;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f7f8fa 0%, #eef4f8 100%);
+  }
+
+  .hero-bg-shape {
+    position: absolute; right: -120px; top: -80px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle at 60% 40%, rgba(42,191,176,0.12) 0%, rgba(244,123,32,0.06) 60%, transparent 80%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; gap: 4rem;
+    max-width: 1200px; margin: 0 auto; width: 100%;
+    position: relative; z-index: 1;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(42,191,176,0.1); border: 1px solid rgba(42,191,176,0.3);
+    color: var(--teal-dark); font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.35rem 1rem; border-radius: 50px;
+    margin-bottom: 1.5rem;
+  }
+  .eyebrow-dot { width: 6px; height: 6px; background: var(--teal); border-radius: 50%; }
+
+  .hero h1 {
+    font-size: clamp(2.4rem, 4vw, 3.8rem);
+    font-weight: 800; line-height: 1.1;
+    color: var(--navy); margin-bottom: 1.5rem;
+  }
+  .hero h1 em { font-style: normal; color: var(--orange); }
+
+  .hero-sub {
+    font-size: 1.1rem; line-height: 1.75; color: var(--text-muted);
+    max-width: 480px; margin-bottom: 2.5rem;
+  }
+
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--orange); color: white;
+    padding: 0.85rem 2rem; border-radius: 50px;
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(244,123,32,0.35);
+  }
+  .btn-primary:hover { background: var(--orange-light); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(244,123,32,0.4); }
+
+  .btn-secondary {
+    background: transparent; color: var(--navy);
+    padding: 0.85rem 2rem; border-radius: 50px;
+    border: 2px solid var(--navy);
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+  }
+  .btn-secondary:hover { background: var(--navy); color: white; transform: translateY(-2px); }
+
+  /* Hero illustration */
+  .hero-visual {
+    position: relative; display: flex; justify-content: center; align-items: center;
+  }
+
+  .browser-mockup {
+    width: 100%; max-width: 480px;
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 32px 80px rgba(26,46,74,0.18);
+    overflow: hidden;
+    animation: floatUp 6s ease-in-out infinite;
+  }
+  @keyframes floatUp {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .browser-bar {
+    background: var(--light-gray); padding: 0.75rem 1rem;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .dot-r { width: 10px; height: 10px; background: #ff5f57; border-radius: 50%; }
+  .dot-y { width: 10px; height: 10px; background: #febc2e; border-radius: 50%; }
+  .dot-g { width: 10px; height: 10px; background: #28c840; border-radius: 50%; }
+  .url-bar {
+    flex: 1; background: white; border-radius: 6px;
+    padding: 0.3rem 0.75rem; font-size: 0.78rem; color: var(--mid-gray);
+    margin-left: 8px;
+  }
+
+  .browser-content {
+    padding: 1.5rem;
+    background: linear-gradient(180deg, #f7f8fa 0%, white 40%);
+  }
+
+  .mock-hero-stripe {
+    height: 8px; background: var(--orange); border-radius: 4px;
+    margin-bottom: 1rem; width: 60%;
+  }
+  .mock-line { height: 8px; background: var(--light-gray); border-radius: 4px; margin-bottom: 8px; }
+  .mock-line.short { width: 75%; }
+  .mock-line.shorter { width: 50%; }
+
+  .mock-cards {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+    margin-top: 1rem;
+  }
+  .mock-card {
+    background: white; border-radius: 8px;
+    border: 1px solid var(--light-gray);
+    padding: 0.75rem;
+  }
+  .mock-card-icon { width: 24px; height: 24px; border-radius: 6px; margin-bottom: 6px; }
+  .mock-card .mock-line { margin-bottom: 4px; }
+
+  .metric-badge {
+    position: absolute; bottom: -20px; left: -30px;
+    background: white; border-radius: var(--radius);
+    padding: 0.85rem 1.25rem;
+    box-shadow: 0 12px 40px rgba(26,46,74,0.15);
+    display: flex; align-items: center; gap: 10px;
+    animation: floatSide 7s ease-in-out infinite;
+  }
+  @keyframes floatSide {
+    0%, 100% { transform: translateY(0px) translateX(0px); }
+    50% { transform: translateY(-6px) translateX(3px); }
+  }
+
+  .metric-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; color: var(--teal); }
+  .metric-lbl { font-size: 0.75rem; color: var(--text-muted); line-height: 1.3; }
+
+  .metric-badge-2 {
+    position: absolute; top: 10px; right: -20px;
+    background: var(--navy); border-radius: var(--radius);
+    padding: 0.75rem 1.1rem;
+    box-shadow: 0 12px 40px rgba(26,46,74,0.3);
+    animation: floatSide2 8s ease-in-out infinite;
+  }
+  @keyframes floatSide2 {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+  .metric-badge-2 .metric-num { color: var(--orange); }
+  .metric-badge-2 .metric-lbl { color: rgba(255,255,255,0.7); }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--navy);
+    padding: 2.5rem 4rem;
+  }
+  .stats-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2rem; align-items: center;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 2.2rem; color: var(--orange);
+    display: block;
+  }
+  .stat-label { font-size: 0.85rem; color: rgba(255,255,255,0.65); margin-top: 4px; }
+  .stat-divider { width: 1px; height: 50px; background: rgba(255,255,255,0.12); margin: 0 auto; }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 4rem; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+
+  .section-eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--orange); font-size: 0.8rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .section-eyebrow::before {
+    content: ''; display: block; width: 20px; height: 2px; background: var(--orange);
+  }
+
+  .section-title {
+    font-size: clamp(1.9rem, 3vw, 2.8rem);
+    font-weight: 800; color: var(--navy); line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 1.05rem; color: var(--text-muted); line-height: 1.75;
+    max-width: 600px;
+  }
+
+  /* ── SERVICES ── */
+  #services { background: var(--off-white); }
+
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 3rem;
+  }
+
+  .service-card {
+    background: white; border-radius: var(--radius-lg);
+    padding: 2rem;
+    border: 1px solid var(--light-gray);
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; background: var(--teal);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(26,46,74,0.1); border-color: transparent; }
+
+  .service-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: rgba(42,191,176,0.1);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.25rem;
+  }
+  .service-icon svg { width: 26px; height: 26px; }
+
+  .service-card h3 {
+    font-size: 1.15rem; font-weight: 700; color: var(--navy);
+    margin-bottom: 0.65rem;
+  }
+  .service-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; }
+
+  .service-card.featured {
+    background: var(--navy); border-color: transparent;
+    color: white;
+  }
+  .service-card.featured h3 { color: white; }
+  .service-card.featured p { color: rgba(255,255,255,0.65); }
+  .service-card.featured .service-icon { background: rgba(244,123,32,0.2); }
+  .service-card.featured::before { background: var(--orange); transform: scaleX(1); }
+
+  /* ── WHY WEBSITE ── */
+  #why {
+    background: white;
+  }
+
+  .why-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center; margin-top: 3rem;
+  }
+
+  .why-visual {
+    position: relative;
+  }
+
+  .why-big-card {
+    background: var(--navy); border-radius: var(--radius-lg);
+    padding: 2.5rem; color: white;
+    position: relative; overflow: hidden;
+  }
+  .why-big-card::after {
+    content: ''; position: absolute; right: -40px; bottom: -40px;
+    width: 160px; height: 160px;
+    background: rgba(42,191,176,0.12); border-radius: 50%;
+  }
+
+  .chart-bar-group {
+    display: flex; align-items: flex-end; gap: 10px;
+    height: 100px; margin: 1.5rem 0;
+  }
+  .chart-bar { border-radius: 4px 4px 0 0; flex: 1; position: relative; }
+  .bar-label { font-size: 0.65rem; color: rgba(255,255,255,0.5); text-align: center; margin-top: 4px; }
+
+  .why-stats-side {
+    display: flex; flex-direction: column; gap: 1rem;
+    margin-top: 1rem;
+  }
+  .why-stat-row {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .why-stat-row .num {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 1.5rem; color: var(--orange); min-width: 60px;
+  }
+  .why-stat-row .desc { font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.4; }
+
+  .why-points { display: flex; flex-direction: column; gap: 1.75rem; }
+
+  .why-point { display: flex; gap: 1.25rem; }
+  .why-point-icon {
+    width: 46px; height: 46px; border-radius: 12px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .why-point-icon.teal { background: rgba(42,191,176,0.1); }
+  .why-point-icon.orange { background: rgba(244,123,32,0.1); }
+  .why-point-icon.navy { background: rgba(26,46,74,0.08); }
+
+  .why-point h4 { font-weight: 700; color: var(--navy); margin-bottom: 0.35rem; font-size: 1rem; }
+  .why-point p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; }
+
+  /* ── PROCESS ── */
+  #process { background: var(--off-white); }
+
+  .process-steps {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0; margin-top: 3rem;
+    position: relative;
+  }
+  .process-steps::before {
+    content: ''; position: absolute;
+    top: 28px; left: 12.5%; right: 12.5%;
+    height: 2px; background: var(--light-gray);
+    z-index: 0;
+  }
+
+  .process-step { text-align: center; padding: 0 1rem; position: relative; z-index: 1; }
+
+  .step-num {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: white; border: 2px solid var(--light-gray);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.25rem;
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 1.2rem; color: var(--mid-gray);
+    transition: all 0.3s;
+  }
+  .process-step:hover .step-num {
+    background: var(--orange); border-color: var(--orange);
+    color: white; transform: scale(1.1);
+  }
+  .process-step h4 { font-weight: 700; color: var(--navy); margin-bottom: 0.4rem; font-size: 0.95rem; }
+  .process-step p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.65; }
+
+  /* ── TESTIMONIALS ── */
+  #testimonials { background: white; }
+
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .testimonial-card {
+    background: var(--off-white); border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    border: 1px solid var(--light-gray);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .testimonial-card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(26,46,74,0.08); }
+
+  .stars { color: var(--orange); font-size: 1rem; margin-bottom: 1rem; letter-spacing: 2px; }
+  .testimonial-card blockquote {
+    font-size: 0.9rem; color: var(--text-muted); line-height: 1.7;
+    margin-bottom: 1.25rem; font-style: italic;
+  }
+  .testimonial-author { display: flex; align-items: center; gap: 10px; }
+  .author-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--teal); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem;
+  }
+  .author-name { font-weight: 600; font-size: 0.875rem; color: var(--navy); }
+  .author-biz { font-size: 0.78rem; color: var(--mid-gray); }
+
+  /* ── CONTACT / QUOTE ── */
+  #contact { background: var(--navy); }
+
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1.4fr;
+    gap: 5rem; align-items: start;
+  }
+
+  .contact-info h2 { color: white; margin-bottom: 1rem; }
+  .contact-info .section-eyebrow { color: var(--teal); }
+  .contact-info .section-eyebrow::before { background: var(--teal); }
+  .contact-sub { font-size: 1rem; color: rgba(255,255,255,0.65); line-height: 1.75; margin-bottom: 2rem; }
+
+  .contact-details { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-detail {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .contact-detail-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: rgba(255,255,255,0.08);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .contact-detail-icon svg { width: 18px; height: 18px; }
+  .contact-detail a, .contact-detail span {
+    font-size: 0.9rem; color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-detail a:hover { color: var(--teal); }
+
+  .quote-form {
+    background: white; border-radius: var(--radius-lg);
+    padding: 2.5rem;
+  }
+  .quote-form h3 {
+    font-size: 1.4rem; font-weight: 800; color: var(--navy);
+    margin-bottom: 0.35rem;
+  }
+  .form-note { font-size: 0.82rem; color: var(--mid-gray); margin-bottom: 2rem; }
+  .form-note strong { color: var(--orange); }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { margin-bottom: 1.1rem; }
+  .form-group label {
+    display: block; font-size: 0.8rem; font-weight: 600;
+    color: var(--text-muted); margin-bottom: 6px;
+    letter-spacing: 0.04em; text-transform: uppercase;
+  }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 0.75rem 1rem;
+    border: 1.5px solid var(--light-gray); border-radius: var(--radius);
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--text);
+    background: var(--off-white);
+    transition: border-color 0.2s, background 0.2s;
+    outline: none;
+    appearance: none;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--teal); background: white;
+  }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .form-submit {
+    width: 100%; padding: 1rem; border-radius: 50px;
+    background: var(--orange); color: white; border: none; cursor: pointer;
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(244,123,32,0.35);
+    margin-top: 0.5rem;
+  }
+  .form-submit:hover { background: var(--orange-light); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(244,123,32,0.45); }
+
+  .form-success {
+    display: none; text-align: center; padding: 2rem 0;
+  }
+  .form-success .checkmark {
+    width: 60px; height: 60px; border-radius: 50%;
+    background: rgba(42,191,176,0.1);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1rem;
+  }
+  .form-success h4 { color: var(--navy); font-size: 1.2rem; margin-bottom: 0.5rem; }
+  .form-success p { color: var(--text-muted); font-size: 0.9rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0f1d2e;
+    padding: 3rem 4rem;
+  }
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1.5rem;
+  }
+  .footer-logo {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 1rem; color: white;
+  }
+  .footer-logo span { color: var(--orange); }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a { font-size: 0.85rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--teal); }
+  .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .fade-up {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .fade-up-delay-1 { transition-delay: 0.1s; }
+  .fade-up-delay-2 { transition-delay: 0.2s; }
+  .fade-up-delay-3 { transition-delay: 0.3s; }
+  .fade-up-delay-4 { transition-delay: 0.4s; }
+  .fade-up-delay-5 { transition-delay: 0.5s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    nav { padding: 1rem 2rem; }
+    section { padding: 5rem 2rem; }
+    .stats-bar { padding: 2rem; }
+    #home { padding: 7rem 2rem 4rem; }
+    footer { padding: 2.5rem 2rem; }
+
+    .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-visual { order: -1; }
+    .browser-mockup { max-width: 380px; margin: 0 auto; }
+
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .why-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .stat-divider { display: none; }
+    .process-steps { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    .process-steps::before { display: none; }
+    .testimonials-grid { grid-template-columns: 1fr 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.25rem; }
+    #home { padding: 6rem 1.25rem 3rem; }
+    footer { padding: 2rem 1.25rem; }
+
+    .hero h1 { font-size: 2rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-inner { flex-direction: column; text-align: center; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#home" class="nav-logo">
+    <svg class="logo-mark" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Browser window base -->
+      <rect x="2" y="8" width="26" height="20" rx="3" fill="#f47b20" opacity="0.9"/>
+      <rect x="2" y="8" width="26" height="5" rx="3" fill="#1a2e4a"/>
+      <circle cx="5.5" cy="10.5" r="1" fill="rgba(255,255,255,0.5)"/>
+      <circle cx="8.5" cy="10.5" r="1" fill="rgba(255,255,255,0.5)"/>
+      <circle cx="11.5" cy="10.5" r="1" fill="rgba(255,255,255,0.5)"/>
+      <!-- Shield base -->
+      <path d="M6 20 L14 17 L22 20 L22 28 Q14 32 6 28 Z" fill="#1a2e4a" opacity="0.7"/>
+      <!-- Arrow trending up -->
+      <path d="M10 30 Q18 14 32 6" stroke="#2abfb0" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M27 4 L34 4 L34 11" stroke="#2abfb0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <!-- Cursor -->
+      <path d="M24 26 L28 34 L30 29 L35 27 Z" fill="#1a2e4a"/>
+    </svg>
+    WEBSITE<span>CURATORS</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why a Website</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Free Quote</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg-shape"></div>
+  <div class="hero-grid">
+    <div class="hero">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        Tacoma's Web Design Team
+      </div>
+      <h1>Your Business Deserves a <em>Website That Works</em></h1>
+      <p class="hero-sub">We build fast, professional websites for Tacoma small businesses — built to impress clients, generate leads, and grow with you.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Get a Free Quote &rarr;</a>
+        <a href="#services" class="btn-secondary">See What We Do</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="browser-mockup">
+        <div class="browser-bar">
+          <div class="dot-r"></div>
+          <div class="dot-y"></div>
+          <div class="dot-g"></div>
+          <div class="url-bar">yourbusiness.com</div>
+        </div>
+        <div class="browser-content">
+          <div class="mock-hero-stripe"></div>
+          <div class="mock-line"></div>
+          <div class="mock-line short"></div>
+          <div class="mock-line shorter"></div>
+          <div class="mock-cards">
+            <div class="mock-card">
+              <div class="mock-card-icon" style="background: rgba(42,191,176,0.2);"></div>
+              <div class="mock-line" style="height:6px;"></div>
+              <div class="mock-line short" style="height:6px;"></div>
+            </div>
+            <div class="mock-card">
+              <div class="mock-card-icon" style="background: rgba(244,123,32,0.2);"></div>
+              <div class="mock-line" style="height:6px;"></div>
+              <div class="mock-line short" style="height:6px;"></div>
+            </div>
+            <div class="mock-card">
+              <div class="mock-card-icon" style="background: rgba(26,46,74,0.1);"></div>
+              <div class="mock-line" style="height:6px;"></div>
+              <div class="mock-line short" style="height:6px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="metric-badge">
+        <div>
+          <div class="metric-num">+312%</div>
+          <div class="metric-lbl">Avg. traffic<br>increase</div>
+        </div>
+      </div>
+
+      <div class="metric-badge-2">
+        <div class="metric-num" style="font-size: 1.1rem;">253</div>
+        <div class="metric-lbl">Local &amp; proud</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item fade-up">
+      <span class="stat-num">100%</span>
+      <span class="stat-label">Local Tacoma business</span>
+    </div>
+    <div class="stat-item fade-up fade-up-delay-1">
+      <span class="stat-num">Free</span>
+      <span class="stat-label">Initial consultation & quote</span>
+    </div>
+    <div class="stat-item fade-up fade-up-delay-2">
+      <span class="stat-num">Fast</span>
+      <span class="stat-label">Delivery timelines</span>
+    </div>
+    <div class="stat-item fade-up fade-up-delay-3">
+      <span class="stat-num">SEO</span>
+      <span class="stat-label">Optimized from day one</span>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-eyebrow fade-up">What We Offer</div>
+    <h2 class="section-title fade-up">Everything You Need to<br>Stand Out Online</h2>
+    <p class="section-sub fade-up">From first concept to launch day — and beyond. We handle every piece of the puzzle.</p>
+
+    <div class="services-grid">
+      <div class="service-card fade-up">
+        <div class="service-icon">
+          <svg viewBox="0 0 26 26" fill="none" stroke="#2abfb0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="22" height="15" rx="2"/>
+            <path d="M8 22h10M13 19v3"/>
+          </svg>
+        </div>
+        <h3>Custom Website Design</h3>
+        <p>Beautiful, mobile-first websites crafted to match your brand identity and convert visitors into customers.</p>
+      </div>
+
+      <div class="service-card featured fade-up fade-up-delay-1">
+        <div class="service-icon">
+          <svg viewBox="0 0 26 26" fill="none" stroke="#f47b20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 2L4 8v5c0 5 4 9.5 9 11 5-1.5 9-6 9-11V8L13 2z"/>
+            <path d="M9 13l3 3 5-5"/>
+          </svg>
+        </div>
+        <h3>Small Business Specialists</h3>
+        <p>We live and work in Tacoma. We understand local business needs and build solutions that speak to your audience in the 253.</p>
+      </div>
+
+      <div class="service-card fade-up fade-up-delay-2">
+        <div class="service-icon">
+          <svg viewBox="0 0 26 26" fill="none" stroke="#2abfb0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="13" cy="13" r="10"/>
+            <path d="M2 13h22M13 2a15 15 0 010 22M13 2a15 15 0 000 22"/>
+          </svg>
+        </div>
+        <h3>SEO Optimization</h3>
+        <p>We build every site with search engines in mind — clean code, fast load times, and on-page SEO so you get found.</p>
+      </div>
+
+      <div class="service-card fade-up fade-up-delay-1">
+        <div class="service-icon">
+          <svg viewBox="0 0 26 26" fill="none" stroke="#2abfb0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 7H6a2 2 0 00-2 2v8a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2z"/>
+            <path d="M16 17v2M10 17v2M7 21h12"/>
+          </svg>
+        </div>
+        <h3>Mobile-First Development</h3>
+        <p>Over 60% of web traffic is mobile. Every site we build looks and works flawlessly on phones, tablets, and desktops.</p>
+      </div>
+
+      <div class="service-card fade-up fade-up-delay-2">
+        <div class="service-icon">
+          <svg viewBox="0 0 26 26" fill="none" stroke="#2abfb0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 17l4-8 4 5 3-3 5 6"/>
+            <circle cx="19" cy="7" r="2"/>
+          </svg>
+        </div>
+        <h3>Analytics & Reporting</h3>
+        <p>Know exactly how your site is performing with clear dashboards and monthly reports — no tech jargon required.</p>
+      </div>
+
+      <div class="service-card fade-up fade-up-delay-3">
+        <div class="service-icon">
+          <svg viewBox="0 0 26 26" fill="none" stroke="#2abfb0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+          </svg>
+        </div>
+        <h3>Ongoing Maintenance</h3>
+        <p>We keep your site secure, updated, and running at peak performance long after launch — you focus on your business.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY A WEBSITE -->
+<section id="why">
+  <div class="section-inner">
+    <div class="section-eyebrow fade-up">The Value of Going Online</div>
+    <h2 class="section-title fade-up">Why Every Small Business Needs<br>a Professional Website</h2>
+    <div class="why-grid">
+      <div class="why-visual fade-up">
+        <div class="why-big-card">
+          <p style="font-size:0.8rem; color: rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.08em; font-weight:600;">Monthly Leads — Before vs After</p>
+          <div class="chart-bar-group">
+            <div style="display:flex; flex-direction:column; align-items:center; flex:1;">
+              <div class="chart-bar" style="height:35%; background: rgba(255,255,255,0.15);"></div>
+              <div class="bar-label">No Site</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; flex:1;">
+              <div class="chart-bar" style="height:55%; background: rgba(42,191,176,0.5);"></div>
+              <div class="bar-label">Basic Site</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; flex:1;">
+              <div class="chart-bar" style="height:75%; background: rgba(42,191,176,0.75);"></div>
+              <div class="bar-label">With SEO</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; flex:1;">
+              <div class="chart-bar" style="height:100%; background: #2abfb0;"></div>
+              <div class="bar-label">Optimized</div>
+            </div>
+          </div>
+
+          <div class="why-stats-side">
+            <div class="why-stat-row">
+              <div class="num">81%</div>
+              <div class="desc">of consumers research online before making a local purchase decision</div>
+            </div>
+            <div class="why-stat-row">
+              <div class="num">75%</div>
+              <div class="desc">of people judge a business's credibility based on their website design</div>
+            </div>
+            <div class="why-stat-row">
+              <div class="num">4×</div>
+              <div class="desc">more leads generated by businesses with optimized websites vs none</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="why-points fade-up fade-up-delay-1">
+        <div class="why-point">
+          <div class="why-point-icon teal">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="#2abfb0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="9"/>
+              <path d="M11 7v4l3 3"/>
+            </svg>
+          </div>
+          <div>
+            <h4>You're Open 24/7</h4>
+            <p>A website works for you around the clock — answering questions, showcasing your services, and capturing leads even when you're closed.</p>
+          </div>
+        </div>
+
+        <div class="why-point">
+          <div class="why-point-icon orange">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="#f47b20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 7H2a1 1 0 00-1 1v6a1 1 0 001 1h18a1 1 0 001-1V8a1 1 0 00-1-1z"/>
+              <path d="M6 11h.01M10 11h.01"/>
+            </svg>
+          </div>
+          <div>
+            <h4>Build Instant Credibility</h4>
+            <p>Customers trust businesses with a professional online presence. Without one, you may be losing clients to competitors before they even reach out.</p>
+          </div>
+        </div>
+
+        <div class="why-point">
+          <div class="why-point-icon navy">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="#1a2e4a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h14v14H4z"/>
+              <path d="M8 4v14M4 8h14"/>
+            </svg>
+          </div>
+          <div>
+            <h4>Reach More Customers Locally</h4>
+            <p>With proper SEO, your business shows up when Tacoma residents search for what you offer — right when they're ready to buy.</p>
+          </div>
+        </div>
+
+        <div class="why-point">
+          <div class="why-point-icon teal">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="#2abfb0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 17l4-7 4 4 4-6 4 9"/>
+            </svg>
+          </div>
+          <div>
+            <h4>Compete With Bigger Brands</h4>
+            <p>A polished website levels the playing field. Small businesses with great sites win clients from larger competitors every day.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-inner">
+    <div class="section-eyebrow fade-up">How It Works</div>
+    <h2 class="section-title fade-up">From Idea to Live — Simple &amp; Streamlined</h2>
+    <p class="section-sub fade-up" style="margin-bottom:0;">No confusing tech talk. We guide you through every step.</p>
+
+    <div class="process-steps">
+      <div class="process-step fade-up">
+        <div class="step-num">01</div>
+        <h4>Free Consultation</h4>
+        <p>We learn your business, goals, and vision. No commitment needed — just a conversation.</p>
+      </div>
+      <div class="process-step fade-up fade-up-delay-1">
+        <div class="step-num">02</div>
+        <h4>Design & Build</h4>
+        <p>We create a custom design, get your approval, and build the full site with your content.</p>
+      </div>
+      <div class="process-step fade-up fade-up-delay-2">
+        <div class="step-num">03</div>
+        <h4>Review & Refine</h4>
+        <p>You review everything. We make adjustments until you're completely satisfied.</p>
+      </div>
+      <div class="process-step fade-up fade-up-delay-3">
+        <div class="step-num">04</div>
+        <h4>Launch & Grow</h4>
+        <p>Your site goes live. We handle hosting, SEO setup, and ongoing support.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-inner">
+    <div class="section-eyebrow fade-up">Client Love</div>
+    <h2 class="section-title fade-up">What Tacoma Businesses Say</h2>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-up">
+        <div class="stars">★★★★★</div>
+        <blockquote>"WebsiteCurators253 completely transformed how customers find us. Within two months of launch our phone was ringing off the hook with new clients."</blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background: var(--teal);">MR</div>
+          <div>
+            <div class="author-name">Mike R.</div>
+            <div class="author-biz">Tacoma Auto Detail</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card fade-up fade-up-delay-1">
+        <div class="stars">★★★★★</div>
+        <blockquote>"I was nervous about getting a website but these guys made it painless. They explained everything, built exactly what I envisioned, and launched on time."</blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background: var(--orange);">SL</div>
+          <div>
+            <div class="author-name">Sarah L.</div>
+            <div class="author-biz">South Sound Bakery</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card fade-up fade-up-delay-2">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Professional, responsive, and genuinely cares about your success. My landscaping business has doubled since my new site launched. Worth every penny."</blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background: var(--navy);">JT</div>
+          <div>
+            <div class="author-name">James T.</div>
+            <div class="author-biz">Pacific NW Landscapes</div>
+          </div>
+        </div>
+        </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / QUOTE -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-info fade-up">
+        <div class="section-eyebrow">Get In Touch</div>
+        <h2 class="section-title" style="color:white;">Ready for a Website That Works Hard for You?</h2>
+        <p class="contact-sub">Fill out the form and we'll get back to you within 24 hours with a free, no-obligation quote. Let's talk about what we can build together.</p>
+
+        <div class="contact-details">
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 18 18" fill="none" stroke="#2abfb0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h14a1 1 0 011 1v10a1 1 0 01-1 1H2a1 1 0 01-1-1V4a1 1 0 011-1z"/>
+                <path d="M1 4l8 6 8-6"/>
+              </svg>
+            </div>
+            <a href="mailto:websitecurators253@gmail.com">websitecurators253@gmail.com</a>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 18 18" fill="none" stroke="#2abfb0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 12.5c0 .3-.1.6-.2.9a2.5 2.5 0 01-.7.8c-.4.3-.8.5-1.3.5-1 0-2.3-.5-3.8-1.4a14.5 14.5 0 01-3.3-3.3C5.8 8.5 5.3 7.2 5.3 6.2c0-.5.1-.9.4-1.3.2-.4.5-.6.8-.8L7.2 3.8c.3-.2.7-.1.9.2l1.5 2.8c.2.3.1.7-.2.9L8.5 8.3c.7 1.3 1.9 2.5 3.2 3.2l.6-.9c.2-.3.6-.4.9-.2l2.8 1.5c.3.2.4.6.2.9 0 .1 0 .1-.2.1z"/>
+              </svg>
+            </div>
+            <a href="tel:2533742949">253-374-2949</a>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 18 18" fill="none" stroke="#2abfb0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 1a6 6 0 00-6 6c0 4 6 10 6 10s6-6 6-10a6 6 0 00-6-6z"/>
+                <circle cx="9" cy="7" r="2"/>
+              </svg>
+            </div>
+            <span>Tacoma, WA 98400</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-form fade-up fade-up-delay-1">
+        <h3>Get Your Free Quote</h3>
+        <p class="form-note"><strong>100% free</strong> — no credit card, no commitment. Just answers.</p>
+
+        <div id="quoteForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" id="fname" placeholder="John" required>
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" id="lname" placeholder="Smith" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="email" placeholder="john@yourbusiness.com" required>
+          </div>
+
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" id="phone" placeholder="(253) 000-0000">
+          </div>
+
+          <div class="form-group">
+            <label>Business Name</label>
+            <input type="text" id="biz" placeholder="Your Business Name">
+          </div>
+
+          <div class="form-group">
+            <label>What do you need?</label>
+            <select id="service">
+              <option value="">Select a service...</option>
+              <option>Brand new website — starting from scratch</option>
+              <option>Redesign my existing website</option>
+              <option>Add SEO / improve my Google ranking</option>
+              <option>Online store / e-commerce</option>
+              <option>Ongoing maintenance &amp; updates</option>
+              <option>Not sure yet — let's talk</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Tell us about your business</label>
+            <textarea id="message" placeholder="What do you do, who are your customers, and what's your goal with a new website?"></textarea>
+          </div>
+
+          <button class="form-submit" onclick="submitForm()">Send My Free Quote Request &rarr;</button>
+        </div>
+
+        <div class="form-success" id="formSuccess">
+          <div class="checkmark">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#2abfb0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 14l6 6L23 8"/>
+            </svg>
+          </div>
+          <h4>We Got It — Thank You!</h4>
+          <p>We'll review your info and reach out within 24 hours. In the meantime, feel free to call us at <strong>253-374-2949</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">WEBSITE<span>CURATORS</span> <span style="color: rgba(255,255,255,0.3); font-weight: 400; font-size: 0.85rem; margin-left: 6px;">253</span></div>
+    <ul class="footer-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#why">Why a Website</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <p class="footer-copy">© 2025 WebsiteCurators253. Tacoma, WA. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // Scroll nav shadow
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Intersection observer for fade-up
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Form submit
+  function submitForm() {
+    const fname = document.getElementById('fname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const service = document.getElementById('service').value;
+
+    if (!fname || !email) {
+      alert('Please fill in your name and email address.');
+      return;
+    }
+
+    // Build mailto link
+    const lname = document.getElementById('lname').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const biz = document.getElementById('biz').value.trim();
+    const msg = document.getElementById('message').value.trim();
+
+    const subject = encodeURIComponent('Free Quote Request — ' + (biz || fname + ' ' + lname));
+    const body = encodeURIComponent(
+      'Name: ' + fname + ' ' + lname + '\n' +
+      'Email: ' + email + '\n' +
+      'Phone: ' + (phone || 'Not provided') + '\n' +
+      'Business: ' + (biz || 'Not provided') + '\n' +
+      'Service Needed: ' + (service || 'Not selected') + '\n\n' +
+      'About their business:\n' + (msg || 'No message provided')
+    );
+
+    window.location.href = 'mailto:websitecurators253@gmail.com?subject=' + subject + '&body=' + body;
+
+    // Show success
+    document.getElementById('quoteForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }
+</script>
+</body>
+</html>
